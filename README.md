@@ -73,22 +73,8 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   El peso de la carga transportada no puede exceder la capacidad máxima de la mochila
   
   ```Python
-  def Genera_Vecino(size, cap):
-    sol = np.zeros(size)
-    for i in range(size):
-        r = rn.random()
-        if r > .5:
-            sol[i] = 1
-        else:
-            sol[i] = 0
-    c=0
-    print("dentro fun:", sol)
-    for i in range(size):
-        if sol[i] == 1:
-            c+=p[i]
-    if c > cap:
+  if c > cap:
         sol = Genera_Vecino(size,cap)
-    return sol
   ```
   
   ### 3.3 - Representación de la solución ###
@@ -114,26 +100,6 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   Para generar una solución vecino, el programa recorre el vector de soluciones, se genera también un número entre 0 y 1. 
   
   Si ese número es mayor a 0.5, quiere decir que ese objeto será parte de la solución.
-  
-  ```Python
-def Genera_Vecino(size, cap):
-    sol = np.zeros(size)
-    for i in range(size):
-        r = rn.random()
-        if r > .5:
-            sol[i] = 1
-        else:
-            sol[i] = 0
-    c=0
-    #print("dentro fun:", sol)
-    for i in range(size):
-        if sol[i] == 1:
-            c+=p[i]
-    if c > cap:
-        sol=Genera_Vecino(size,cap)
-    
-    return sol
-```
   
 ## 4 - Instancias ##
 
