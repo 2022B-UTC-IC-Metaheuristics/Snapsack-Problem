@@ -59,15 +59,6 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   
   Consiste en maximizar la carga que se llevará en la mochila
   
-  ```Python
-  def Costo(sol,size):
-    f=0
-    for i in range(size):
-        if sol[i] == 1:
-            f+=v[i]
-    return f
-  ```
-  
   ### 3.2 - Restricciones ###
   
   El peso de la carga transportada no puede exceder la capacidad máxima de la mochila
