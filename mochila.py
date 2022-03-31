@@ -4,12 +4,12 @@ import numpy as np
 import sys
 sys.setrecursionlimit(8000)
 T=5
-L=5
+L=20
 alpha=.55
-sAct= np.array([0,0,0,0,0,0,0,0,0,0])
+sAct= np.array([1,0,0,0,0])
 sCand=sAct
-v=np.array([20,4,5,2,8,20,4,5,2,8])
-p=np.array([10,2,14,8,5,10,2,14,8,5])
+v=np.array([20,4,25,2,8])
+p=np.array([10,2,14,8,5])
 size = v.shape[0]
 R=0.2
 cap=20
@@ -24,13 +24,12 @@ def Genera_Vecino(size, cap):
         else:
             sol[i] = 0
     c=0
-    #print("dentro fun:", sol)
+    print("dentro fun:", sol)
     for i in range(size):
         if sol[i] == 1:
             c+=p[i]
     if c > cap:
-        sol=Genera_Vecino(size,cap)
-    
+        sol = Genera_Vecino(size,cap)
     return sol
     
 def Costo(sol,size):
@@ -44,6 +43,7 @@ def recocido(sAct,T,L,alpha,R):
     while T > 0.001 :
         for i in range(L):
             sCand = Genera_Vecino(size,cap)
+            print("salida fun:", sCand)
             AE=Costo(sCand,size) - Costo(sAct,size)
             if AE >= 0:
                 sAct = sCand
