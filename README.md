@@ -135,6 +135,11 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
 
 El equipo determinó que para el vector de pesos, los valores se encuentren entre 1 y 20, por conveniencia.
 
+La función para generar los números aleatorios es la siguiente
+
+![Imagen de WhatsApp 2022-04-07 a las 14 53 47](https://user-images.githubusercontent.com/56168184/162312491-ea391a05-2862-475f-ae07-b2b83dfb79a5.jpg)
+
+
 ### Primera instancia: ###
   
   Tamaño de vector solución = 20 items
