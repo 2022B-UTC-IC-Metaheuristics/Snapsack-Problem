@@ -59,6 +59,15 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   
   Consiste en maximizar la carga que se llevará en la mochila
   
+  ```Python
+  def Costo(sol,size):
+    f=0
+    for i in range(size):
+        if sol[i] == 1:
+            f+=v[i]
+    return f
+  ```
+  
   ### 3.2 - Restricciones ###
   
   El peso de la carga transportada no puede exceder la capacidad máxima de la mochila
@@ -92,22 +101,63 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   
   Si ese número es mayor a 0.5, quiere decir que ese objeto será parte de la solución.
   
+  ```Python
+  def Genera_Vecino(sol, size, cap):
+    r = rn.randint(0, size-1)
+    
+    if sol[r] == 0:
+        sol[r] = 1
+    else:
+        sol[r] = 0
+    pSol = pesos(sol,size)
+    while pSol > cap:
+        i = rn.randint(0,size-1)
+        sol[i] = 0
+        pSol = pesos(sol,size)
+        
+    return sol
+    
+    def pesos(sol,size):
+    f=0
+    for i in range(size):
+        if sol[i] == 1:
+            f+=p[i]
+    return f
+  ```
+  
 ## 4 - Instancias ##
+
+El equipo determinó que para el vector de pesos, los valores se encuentren entre 1 y 20, por conveniencia.
 
 ### Primera instancia: ###
   
-  capacidad = 40
-  items = [0,0,0,0,0]
-  valores = [20,4,25,2,8]
-  pesos = [10,2,14,8,5])
-  
-Resultado = [0,1,1,1,1]
-
-### Segunda instancia: ###
+  Tamaño de vector solución = 20 items
   
   capacidad = 50
-  items = [0,0,0,0,0]
-  valores = [30,10,20,15,8]
-  pesos = [5,20,25,18,30])
+  items = [0,0,...,0]
+  valores = [20,4,...,2,8]
+  pesos = [10,2,...,8,5])
   
-Resultado = [1,1,1,0,0]
+  Resultado = [0,...,0]
+
+### Segunda instancia: ###
+
+  Tamaño de vector solución = 200 items
+  
+  capacidad = 50
+  items = [0,0,...,0]
+  valores = [20,4,...,2,8]
+  pesos = [10,2,...,8,5])
+  
+  Resultado = [0,...,0]
+
+  ### Tercera instancia: ###
+
+  Tamaño de vector solución = 1500 items
+  
+  capacidad = 50
+  items = [0,0,...,0]
+  valores = [20,4,...,2,8]
+  pesos = [10,2,...,8,5])
+  
+  Resultado = [0,...,0]
