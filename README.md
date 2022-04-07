@@ -79,6 +79,12 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   
   ### 3.3 - Representación de la solución ###
   
+  Definimos la capacidad de la mochila
+  
+  ```Python
+  cap=30
+  ```
+  
   Se definieron dos vectores
   
   ```Python
@@ -91,7 +97,7 @@ Si la capacidad de la mochila es c=70, meteríamos los elementos A y B que son l
   Al ejecutar el programa, nos lanza como solución un vector como éste
   
   ```Python
-  ([1,0,0,0,0])
+  ([1,0,1,0,1])
   ```
   en el cuál, se mostrarán con un 1 los objetos seleccionados para introducirse en la mochila, mientras que con 0 los que    se quedarán afuera.
   
@@ -134,30 +140,15 @@ El equipo determinó que para el vector de pesos, los valores se encuentren entr
   Tamaño de vector solución = 20 items
   
   capacidad = 50
-  items = [0,0,...,0]
-  valores = [20,4,...,2,8]
-  pesos = [10,2,...,8,5])
-  
-  Resultado = [0,...,0]
 
 ### Segunda instancia: ###
 
   Tamaño de vector solución = 200 items
   
   capacidad = 50
-  items = [0,0,...,0]
-  valores = [20,4,...,2,8]
-  pesos = [10,2,...,8,5])
-  
-  Resultado = [0,...,0]
 
   ### Tercera instancia: ###
 
   Tamaño de vector solución = 1500 items
   
   capacidad = 50
-  items = [0,0,...,0]
-  valores = [20,4,...,2,8]
-  pesos = [10,2,...,8,5])
-  
-  Resultado = [0,...,0]
