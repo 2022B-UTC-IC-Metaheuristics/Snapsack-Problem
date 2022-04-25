@@ -157,3 +157,8 @@ La función para generar los números aleatorios es la siguiente
   Tamaño de vector solución = 1500 items
   
   capacidad = 50
+  
+Codigo para leer los archivos
+
+![image](https://user-images.githubusercontent.com/56168184/165009779-6f8d27cc-1f40-423c-98a8-2d42fc69ee14.png)
+
