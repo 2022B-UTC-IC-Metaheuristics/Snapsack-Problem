@@ -7,6 +7,8 @@ El problema de la mochila, comúnmente abreviado por KP es un problema de optimi
 ## 2 - Problema ##
 En éste problema, se deben empaquetar un conjunto de artículos, con valores y tamaños dados (como pesos o volúmenes), en un contenedor con una capacidad máxima. Si el tamaño total de los artículos excede la capacidad, no se pueden empaquetar todos. En ese caso, el problema es elegir un subconjunto de los artículos de máximo valor total que quepan en el contenedor.
 
+Velasco se basa en la definición formal del problema:  *“Se tiene una determinada instancia de KP con un conjunto de objetos $N$, que consiste de $n$ objetos $j$ con ganancia $p_j$ y peso $w_j$, y una capacidad $c$. (Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de $N$ tal que la ganancia total de esos objetos seleccionados es maximizado y el total de los pesos no excede a $c$"*
+
   ### 2.1 - Definición ###
 
 El modelo del KP parte de la suposición de que un escalador tiene que llenar su mochila. Para ello debe seleccionar una cantidad de varios posibles objetos, los cuales le pueden brindar el mayor beneficio sin exceder la capacidad de la mochila. El KP pueder ser matemáticamente formulado con un vector de variables binarias $x_j$ en donde:
@@ -166,3 +168,8 @@ Codigo para leer los archivos
 
 ![image](https://user-images.githubusercontent.com/56168184/165009779-6f8d27cc-1f40-423c-98a8-2d42fc69ee14.png)
 
+## 5 - Referencias ##
+
+Velasco, J. (2010). NP-Completeness: Complejidad del problema de la Mochila. Presentación de Tesis. Facultad de Ingeniería Mecánica y Eléctrica. División de Posgrado en Ingeniería en Sistemas. Universidad Autónoma de Nuevo León.
+
+De Hidalgo, U. A. D. E. (s. f.). Boletín Científico :: UAEH. https://www.uaeh.edu.mx/scige/boletin/tlahuelilpan/n6/e2.html
