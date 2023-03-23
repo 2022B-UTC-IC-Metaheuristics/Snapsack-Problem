@@ -172,4 +172,4 @@ Codigo para leer los archivos
 
 Velasco, J. (2010). NP-Completeness: Complejidad del problema de la Mochila. Presentación de Tesis. Facultad de Ingeniería Mecánica y Eléctrica. División de Posgrado en Ingeniería en Sistemas. Universidad Autónoma de Nuevo León.
 
-De Hidalgo, U. A. D. E. (s. f.). Boletín Científico :: UAEH. https://www.uaeh.edu.mx/scige/boletin/tlahuelilpan/n6/e2.html
+De Hidalgo, U. A. D. E. (s. f.). Boletín Científico :: UAEH. https://www.uaeh.edu.mx/scige/boletin/tlahuelilpan/n6/e2.html 
