@@ -7,7 +7,7 @@ El problema de la mochila, comúnmente abreviado por KP es un problema de optimi
 ## 2 - Problema ##
 En éste problema, se deben empaquetar un conjunto de artículos, con valores y tamaños dados (como pesos o volúmenes), en un contenedor con una capacidad máxima. Si el tamaño total de los artículos excede la capacidad, no se pueden empaquetar todos. En ese caso, el problema es elegir un subconjunto de los artículos de máximo valor total que quepan en el contenedor.
 
-Velasco se basa en la definición formal del problema:  *“Se tiene una determinada instancia de KP con un conjunto de objetos $N$, que consiste de $n$ objetos $j$ con ganancia $p_j$ y peso $w_j$, y una capacidad $c$. (Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de $N$ tal que la ganancia total de esos objetos seleccionados es maximizado y el total de los pesos no excede a $c$"*
+Velasco se basa en la definición formal del problema:  *“Se tiene una determinada instancia de KP con un conjunto de objetos* $N$, *que consiste de* $n$ *objetos* $j$ *con ganancia* $p_j$ *y peso* $w_j$, *y una capacidad* $c$. *(Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de* $N$ *tal que la ganancia total de esos objetos seleccionados es maximizado y el total de los pesos no excede a* $c$"
 
   ### 2.1 - Definición ###
 
