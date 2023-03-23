@@ -101,7 +101,7 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   p=np.array([10,2,14,8,5])
   ```
   
-  El vector $ v $ contiene los valores de los elementos propuestos para la mochila, mientras que el vector $ p $ contiene los pesos de cada uno de los elementos. Tenemos entonces 5 objetos con 2 características: valor y peso.
+  El vector $v$ contiene los valores de los elementos propuestos para la mochila, mientras que el vector $p$ contiene los pesos de cada uno de los elementos. Tenemos entonces 5 objetos con 2 características: valor y peso.
   
   Al ejecutar el programa, nos lanza como solución un vector como éste
   
