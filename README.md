@@ -9,24 +9,34 @@ En éste problema, se deben empaquetar un conjunto de artículos, con valores y 
 
   ### 2.1 - Definición ###
 
-El modelo del KP parte de la suposición de que un escalador tiene que llenar su mochila. Para ello debe seleccionar una cantidad de varios posibles objetos, los cuales le pueden brindar el mayor beneficio sin exceder la capacidad de la mochila. El KP pueder ser matemáticamente formulado con un vector de variables binarias $ x_j $ en donde:
-$$x_{j}= \left\{\begin{matrix}
+El modelo del KP parte de la suposición de que un escalador tiene que llenar su mochila. Para ello debe seleccionar una cantidad de varios posibles objetos, los cuales le pueden brindar el mayor beneficio sin exceder la capacidad de la mochila. El KP pueder ser matemáticamente formulado con un vector de variables binarias $x_j$ en donde:
+
+$$x_{j}= \left\lbrace\begin{matrix}
 1&si&el&elemento&j&es&seleccionado\\ 
 0&en&otro&caso
 \end{matrix}\right.$$
-Entonces, si $ p_j $ es una medida de importancia (en este caso, ganancia) para un elemento $ j $, $ w_j $ representa el tamaño de dicho elemento, y $ cv $ es el tamaño de la mochila, el problema refiere a la selección de la cantidad de todos elementos cuyos vector binarios $ x_j $ satisfagan las siguientes restricciones:
-$$\sum_{j=1}^{n} w_{j} x_{j} \leq cv,\\ x_{j}\in \left \{ 0,1\}, j=1,...,n\right.$$
+
+Entonces, si $p_j$ es una medida de importancia (en este caso, ganancia) para un elemento $j$, $w_j$ representa el tamaño de dicho elemento, y $cv$ es el tamaño de la mochila, el problema refiere a la selección de la cantidad de todos elementos cuyos vector binarios $x_j$ satisfagan las siguientes restricciones:
+
+$$ \sum_{j=1}^{n} w_{j} x_{j} \leq cv $$
+
+$$ x_{j}\in \left\lbrace 0,1 \right\rbrace , j=1,...,n. $$
+
 que deben contribuir a maximizar la siguiente función objetivo:
+
 $$\sum_{j=1}^{n} p_{j} x_{j}$$
-Para este caso se extendió el modelo con una restricción adicional de tamaño: $ cv $ se considera como la capacidad volumétrica de la mochila y $ cz $ como la capacidad en peso de la mochila. De esta manera se tienen dos variables para cada elemento: $ w_j $ como el tamaño en volumen (cm cúbicos) del elemento $ j-esimo $, y $ z_j $ como el tamaño en peso (kg) del elemento $ j-esimo $, lo cual da la siguiente restricción:
+
+Para este caso se extendió el modelo con una restricción adicional de tamaño: $cv$ se considera como la capacidad volumétrica de la mochila y $cz$ como la capacidad en peso de la mochila. De esta manera se tienen dos variables para cada elemento: $w_j$ como el tamaño en volumen (cm cúbicos) del elemento $j-esimo$, y $z_j$ como el tamaño en peso (kg) del elemento $j-esimo$, lo cual da la siguiente restricción:
+
 $$\sum_{j=1}^{n} z_{j} x_{j} \leq cz$$
+
 ### 2.2 - Aplicaciones ###
   
 Como parte de la aplicación del problema de la mochila como una forma de emular situaciones reales donde es necesario acomodar artículos de diferentes dimensiones en un espacio reducido.
 
 Se puede emplear, como ejemplo, el uso de contenedores en las aduanas, donde se requiere enviar ítems de diferentes pesos, tamaños y valores de beneficio. Por otra parte, en la misma aduana, es necesario almacenar, de manera temporal, los contenedores mismos, por lo que este problema puede ser resuelto con base en la soluciones propuesta para el problema de la mochila.
 
-En aspectos de criptografía, en el caso de descifrar contraseñas, este problema se puede ver como un número de contenedores que pueden tener $ n $ valores cada uno. En otro sentido, cuando es necesario traducir un texto encriptado, en el momento de identificar los espacios, cada palabra puede fungir como un contenedor de $ n_i $ ítems (caracteres de la palabra), donde cada caracter $ i $ puede tener $ n $ posibles artículos.
+En aspectos de criptografía, en el caso de descifrar contraseñas, este problema se puede ver como un número de contenedores que pueden tener $n$ valores cada uno. En otro sentido, cuando es necesario traducir un texto encriptado, en el momento de identificar los espacios, cada palabra puede fungir como un contenedor de $n_i$ ítems (caracteres de la palabra), donde cada caracter $i$ puede tener $n$ posibles artículos.
 
 Como parte de la aplicación del problema de la mochila, y haciendo una revisión de la literatura actual se pueden resolver problemas relacionados con:
 
@@ -50,7 +60,7 @@ La selección de proyectos, donde cada proyecto se puede ver como un contenedor 
 | D | 15 | 20 |
 | E | 10 | 80 |
 
-Si la capacidad de la mochila es $ c = 70 $ , meteríamos los elementos $ A $ y $ B $ que son los que mayor valor suman, y además ocupan toda la capacidad de la mochila.
+Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ que son los que mayor valor suman, y además ocupan toda la capacidad de la mochila.
 
 ## 3 - Modelo ##
   
