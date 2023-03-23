@@ -20,7 +20,7 @@ Entonces, si $p_j$ es una medida de importancia (en este caso, ganancia) para un
 
 $$ \sum_{j=1}^{n} w_{j} x_{j} \leq cv $$
 
-$$ x_{j}\in \left\lbrace 0,1 \right\rbrace , j=1,...,n. $$
+$$ x_{j}\in \left\lbrace 0,1 \right\rbrace , j=1,...,n $$
 
 que deben contribuir a maximizar la siguiente función objetivo:
 
