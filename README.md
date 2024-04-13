@@ -1,10 +1,16 @@
-# Snapsack-Problem
+# Knapsack-Problem
 
 ## 1 - Introducción ##
-
+El problema de la mochila es uno de los 21 problemas NP-completos establecidos por el informático teórico Richard Karp en un famoso artículo de 1972.
 El problema de la mochila, comúnmente abreviado por KP es un problema de optimización combinatoria, es decir, que busca la mejor solución entre un conjunto finito de posibles soluciones a un problema.
 
 ## 2 - Problema ##
+Dado un conjunto de artículos, cada uno con un peso y un valor, el objetivo es determinar qué artículos incluir en una colección de manera que:
+
+-El peso total no exceda un límite dado.
+
+-El valor total sea lo más grande posible.
+
 En éste problema, se deben empaquetar un conjunto de artículos, con valores y tamaños dados (como pesos o volúmenes), en un contenedor con una capacidad máxima. Si el tamaño total de los artículos excede la capacidad, no se pueden empaquetar todos. En ese caso, el problema es elegir un subconjunto de los artículos de máximo valor total que quepan en el contenedor.
 
 Velasco se basa en la definición formal del problema:  *“Se tiene una determinada instancia de KP con un conjunto de objetos* $N$, *que consiste de* $n$ *objetos* $j$ *con ganancia* $p_j$ *y peso* $w_j$, *y una capacidad* $c$. *(Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de* $N$ *tal que la ganancia total de esos objetos seleccionados es maximizado y el total de los pesos no excede a* $c$"
@@ -33,24 +39,26 @@ Para este caso se extendió el modelo con una restricción adicional de tamaño:
 $$\sum_{j=1}^{n} z_{j} x_{j} \leq cz$$
 
 ### 2.2 - Aplicaciones ###
-  
-Como parte de la aplicación del problema de la mochila como una forma de emular situaciones reales donde es necesario acomodar artículos de diferentes dimensiones en un espacio reducido.
 
-Se puede emplear, como ejemplo, el uso de contenedores en las aduanas, donde se requiere enviar ítems de diferentes pesos, tamaños y valores de beneficio. Por otra parte, en la misma aduana, es necesario almacenar, de manera temporal, los contenedores mismos, por lo que este problema puede ser resuelto con base en la soluciones propuesta para el problema de la mochila.
+Como parte de la aplicación del problema de la mochila se emulan situaciones reales donde es necesario acomodar artículos de diferentes dimensiones en un espacio reducido.
 
-En aspectos de criptografía, en el caso de descifrar contraseñas, este problema se puede ver como un número de contenedores que pueden tener $n$ valores cada uno. En otro sentido, cuando es necesario traducir un texto encriptado, en el momento de identificar los espacios, cada palabra puede fungir como un contenedor de $n_i$ ítems (caracteres de la palabra), donde cada caracter $i$ puede tener $n$ posibles artículos.
+Se puede emplear, como ejemplo, el uso de contenedores en las aduanas, donde se requiere enviar ítems de diferentes pesos, tamaños y valores de beneficio. Por otra parte, en la misma aduana, es necesario almacenar temporalmente los contenedores mismos, por lo que este problema puede ser resuelto con base en las soluciones propuestas para el problema de la mochila.
+
+En aspectos de criptografía, al descifrar contraseñas, este problema se puede ver como un número de contenedores que pueden tener $n$ valores cada uno. De manera similar, al traducir un texto encriptado, al identificar los espacios, cada palabra puede fungir como un contenedor de $n_i$ ítems (caracteres de la palabra), donde cada caracter $i$ puede tener $n$ posibles artículos.
+
+Además de las aplicaciones mencionadas anteriormente, el problema de la mochila también se utiliza en el ámbito de la ayuda humanitaria. Por ejemplo, al considerar la carga de un avión que transporta suministros de ayuda a áreas afectadas por desastres naturales o crisis humanitarias, se enfrenta el desafío de maximizar el valor total de la ayuda sin exceder la capacidad de carga del avión. En esta situación, el problema se formula de manera similar al problema de la mochila, donde los artículos corresponden a los diferentes tipos de suministros de ayuda (por ejemplo, alimentos, medicinas, mantas) y sus respectivos valores y pesos se ajustan para maximizar la eficiencia de la entrega de ayuda.
 
 Como parte de la aplicación del problema de la mochila, y haciendo una revisión de la literatura actual se pueden resolver problemas relacionados con:
 
-La selección de proyectos, donde cada proyecto se puede ver como un contenedor de diferentes ítems tales como: personas, recursos, etc.
+* La selección de proyectos, donde cada proyecto se puede ver como un contenedor de diferentes ítems tales como: personas, recursos, etc.
 
-* En la solución de problemáticas donde es necesario detectar patrones de corte.
+* La solución de problemáticas donde es necesario detectar patrones de corte.
 
-* En situaciones donde de problemas de distribución de carga (física, eléctrica, etc.).
+* Situaciones de problemas de distribución de carga (física, eléctrica, etc.).
 
-* Cuando se requiere abastecer vehículos de transporte y entrega de productos de diferentes tamaños que deben ser colocados en múltiples compartimentos de igual o diferente tamaño,
+* El abastecimiento de vehículos de transporte y entrega de productos de diferentes tamaños que deben ser colocados en múltiples compartimentos de igual o diferente tamaño,
 
-* Asignación de procesadores y datos en sistemas distribuidos.
+* La asignación de procesadores y datos en sistemas distribuidos.
 
 ### 2.3 - Ejemplo ###
   
@@ -71,12 +79,37 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   Consiste en maximizar el valor que se llevará en la mochila
   
   ```Python
-  def Costo(sol,size):
-    f=0
-    for i in range(size):
-        if sol[i] == 1:
-            f+=v[i]
-    return f
+  def getTotalValor(valores: list, actual_solution: list) -> float:
+      """
+      Calcula el valor total de la solución para el Problema de la Mochila.
+  
+      Parameters
+      ----------
+      valores : list
+          Lista de valores asociados a cada elemento.
+      actual_solution : list
+          Lista que representa la solución actual, donde cada elemento indica si el elemento correspondiente está incluido en la mochila (1 si está incluido, 0 si no lo está).
+  
+      Returns
+      -------
+      float
+          El valor total de la solución.
+      """
+      # Inicialización de la variable totalValor que almacenará el valor total de la solución.
+      totalValor = 0
+      # Inicialización del índice i para recorrer la lista de valores.
+      i = 0
+      # Iteración a través de cada elemento en la solución actual.
+      for element in actual_solution:
+          # Verificación si el elemento actual esta en la mochila(1).
+          if element:
+              # Si el elemento esta en la mochila, se suma el valor correspondiente a totalValor.
+              totalValor += float(valores[i])
+          # Incremento del índice para acceder al siguiente valor en la lista de valores.
+          i += 1
+      # Devolución del valor total de la solución.
+      return totalValor
+
   ```
   
   ### 3.2 - Restricciones ###
@@ -84,8 +117,10 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   El peso de la carga transportada no puede exceder la capacidad máxima de la mochila
   
   ```Python
-  if c > cap:
-        sol = Genera_Vecino(size,cap)
+  # Se verifica si el peso total de la solución es menor o igual a la capacidad de la mochila.
+  if self.getTotalPeso(self.pesos, firstSolution) <= self.capacity:
+      # Si la condición se cumple, se devuelve la solución generada.
+      return firstSolution
   ```
   
   ### 3.3 - Representación de la solución ###
@@ -108,65 +143,72 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   Al ejecutar el programa, nos lanza como solución un vector como éste
   
   ```Python
-  ([1,0,1,0,1])
+  Solucion:  [1, 0, 1, 0, 1]
+  Costo:  53.0
   ```
   en el cuál, se mostrarán con un 1 los objetos seleccionados para introducirse en la mochila, mientras que con 0 los que    se quedarán afuera.
   
   ### 3.4 - Solución vecino ###
   
-  Para generar una solución vecino, el programa recorre el vector de soluciones, se genera también un número entre 0 y 1. 
-  
-  Si ese número es mayor a 0.5, quiere decir que ese objeto será parte de la solución.
+  Este código genera una solución vecina para el Problema de la Mochila modificando aleatoriamente la solución actual y asegurándose de que la nueva solución cumpla con las restricciones de peso impuestas por la capacidad de la mochila.
   
   ```Python
-  def Genera_Vecino(sol, size, cap):
-    r = rn.randint(0, size-1)
-    
-    if sol[r] == 0:
-        sol[r] = 1
-    else:
-        sol[r] = 0
-    pSol = pesos(sol,size)
-    while pSol > cap:
-        i = rn.randint(0,size-1)
-        sol[i] = 0
-        pSol = pesos(sol,size)
-        
-    return sol
-    
-    def pesos(sol,size):
-    f=0
-    for i in range(size):
-        if sol[i] == 1:
-            f+=p[i]
-    return f
+  def create_neighbor_solution(self, actual_solution: list) -> list:
+    """
+    Crea una solución vecina para el Problema de la Mochila.
+
+    Genera una solución vecina modificando aleatoriamente la solución actual. Se asegura de que la solución vecina generada sea válida en términos de peso respecto a la capacidad de la mochila.
+
+    Parameters
+    ----------
+    actual_solution : list
+        Lista que representa la solución actual, donde cada elemento indica si el elemento correspondiente está incluido en la mochila (1 si está incluido, 0 si no lo está).
+
+    Returns
+    -------
+    list
+        La solución vecina generada.
+    """
+    # Se inicializa un bucle infinito para asegurar que se genere una solución válida.
+    while True:
+        # Se crea una copia de la solución actual para modificarla.
+        neighbor = actual_solution.copy()
+        # Se selecciona aleatoriamente un índice dentro del rango de la longitud de la solución.
+        randomIndex = random.randint(0, (len(actual_solution) - 1))
+        # Se cambia el valor del elemento en el índice seleccionado: si es 1, se convierte en 0; si es 0, se convierte en 1.
+        neighbor[randomIndex] = 0 if neighbor[randomIndex] == 1 else 1
+        # Se verifica si el peso total de la solución vecina es menor o igual a la capacidad de la mochila.
+        if self.getTotalPeso(self.pesos, neighbor) <= self.capacity:
+            # Si la condición se cumple, se devuelve la solución vecina generada.
+            return neighbor
   ```
   
 ## 4 - Instancias ##
 
-El equipo determinó que para el vector de pesos, los valores se encuentren entre 1 y 20, por conveniencia.
+La siguiente tabla muestra las instancias que se van a resolver.
+  | Instancias | Tamaño de vector solución | Capacidad | costo | solucion |
+|-----------|-----------|-----------|-----------|-----------|
+| 1  | 20  | 50  |  131.0 |  [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1] |
+| 2  | 100  | 500  | 792.0  | [1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1] |
+| 3  | 200  | 1000  | 1803.0  | [0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0] |
 
-### Primera instancia: ###
-  
-  Tamaño de vector solución = 20 items
-  
-  capacidad = 50
-
-### Segunda instancia: ###
-
-  Tamaño de vector solución = 200 items
-  
-  capacidad = 50
-
-  ### Tercera instancia: ###
-
-  Tamaño de vector solución = 1500 items
-  
-  capacidad = 50
   
 Codigo para leer los archivos
+```Python
+pesos = []
+with open("./instancias/p20.txt", "r") as file:
+    for line in file:
+        row = line.strip().split(",")
+        pesos.append(row)
+pesos = np.array(pesos).astype("float")
 
-![image](https://user-images.githubusercontent.com/56168184/165009779-6f8d27cc-1f40-423c-98a8-2d42fc69ee14.png)
+valores = []
+with open("./instancias/v20.txt", "r") as file:
+    for line in file:
+        row = line.strip().split(",")
+        valores.append(row)
+valores = np.array(valores).astype("float")
+```
 
 ## 5 - Referencias ##
 
