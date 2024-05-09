@@ -1,19 +1,17 @@
 # Knapsack-Problem
 
 ## 1 - Introducción ##
-El problema de la mochila es uno de los 21 problemas NP-completos establecidos por el informático teórico Richard Karp en un famoso artículo de 1972.
-El problema de la mochila, comúnmente abreviado por KP es un problema de optimización combinatoria, es decir, que busca la mejor solución entre un conjunto finito de posibles soluciones a un problema.
+El problema de la mochila es uno de los 21 problemas NP-completos establecidos por el informático teórico Richard Karp en un famoso artículo de 1972. El problema de la mochila, comúnmente abreviado por KP, es un problema de optimización combinatoria, es decir, que busca la mejor solución entre un conjunto finito de posibles soluciones a un problema.
 
 ## 2 - Problema ##
 Dado un conjunto de artículos, cada uno con un peso y un valor, el objetivo es determinar qué artículos incluir en una colección de manera que:
 
--El peso total no exceda un límite dado.
+- El peso total no exceda un límite dado.
+- El valor total sea lo más grande posible.
 
--El valor total sea lo más grande posible.
+En este problema, se deben empaquetar un conjunto de artículos, con valores y tamaños dados (como pesos o volúmenes), en un contenedor con una capacidad máxima. Si el tamaño total de los artículos excede la capacidad, no se pueden empaquetar todos. En ese caso, el problema es elegir un subconjunto de los artículos de máximo valor total que quepan en el contenedor.
 
-En éste problema, se deben empaquetar un conjunto de artículos, con valores y tamaños dados (como pesos o volúmenes), en un contenedor con una capacidad máxima. Si el tamaño total de los artículos excede la capacidad, no se pueden empaquetar todos. En ese caso, el problema es elegir un subconjunto de los artículos de máximo valor total que quepan en el contenedor.
-
-Velasco se basa en la definición formal del problema:  *“Se tiene una determinada instancia de KP con un conjunto de objetos* $N$, *que consiste de* $n$ *objetos* $j$ *con ganancia* $p_j$ *y peso* $w_j$, *y una capacidad* $c$. *(Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de* $N$ *tal que la ganancia total de esos objetos seleccionados es maximizado y el total de los pesos no excede a* $c$"
+Velasco se basa en la definición formal del problema: *"Se tiene una determinada instancia de KP con un conjunto de objetos* $N$, *que consiste de* $n$ *objetos* $j$ *con ganancia* $p_j$ *y peso* $w_j$, *y una capacidad* $c$. *(Usualmente, los valores toman números enteros positivos). El objetivo es seleccionar un subconjunto de* $N$ *tal que la ganancia total de esos objetos seleccionados es maximizada y el total de los pesos no excede a* $c$".
 
   ### 2.1 - Definición ###
 
@@ -79,51 +77,42 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   Consiste en maximizar el valor que se llevará en la mochila
   
   ```Python
-  def getTotalValor(valores: list, actual_solution: list) -> float:
+  def getTotalValor(actual_solution: list, valores: list, capacidad: int, pesos: list) -> float:
       """
-      Calcula el valor total de la solución para el Problema de la Mochila.
+      Calcula el valor total de una solución dada y verifica si excede la capacidad dada.
   
-      Parameters
-      ----------
-      valores : list
-          Lista de valores asociados a cada elemento.
-      actual_solution : list
-          Lista que representa la solución actual, donde cada elemento indica si el elemento correspondiente está incluido en la mochila (1 si está incluido, 0 si no lo está).
+      Parámetros:
+      - actual_solution (list): Una lista que representa la solución actual.
+      - valores (list): Una lista de valores asociados a los elementos.
+      - capacidad (int): La capacidad máxima permitida.
+      - pesos (list): Una lista de pesos asociados a los elementos.
   
-      Returns
-      -------
-      float
-          El valor total de la solución.
+      Retorna:
+      - float: El valor total de la solución actual.
+               Si el total del peso excede la capacidad, retorna la diferencia entre el valor total y el total del peso.
       """
-      # Inicialización de la variable totalValor que almacenará el valor total de la solución.
       totalValor = 0
-      # Inicialización del índice i para recorrer la lista de valores.
       i = 0
-      # Iteración a través de cada elemento en la solución actual.
       for element in actual_solution:
-          # Verificación si el elemento actual esta en la mochila(1).
           if element:
-              # Si el elemento esta en la mochila, se suma el valor correspondiente a totalValor.
               totalValor += float(valores[i])
-          # Incremento del índice para acceder al siguiente valor en la lista de valores.
           i += 1
-      # Devolución del valor total de la solución.
+      totalPeso = 0
+      i = 0
+      for element in actual_solution:
+          if element:
+              totalPeso += pesos[i]
+          i += 1
+      totalPeso=int(totalPeso)
+      if totalPeso > capacidad:
+          return totalValor-totalPeso
       return totalValor
-
   ```
-  
-  ### 3.2 - Restricciones ###
-  
-  El peso de la carga transportada no puede exceder la capacidad máxima de la mochila
-  
+  ### Ejemplo de llamada
   ```Python
-  # Se verifica si el peso total de la solución es menor o igual a la capacidad de la mochila.
-  if self.getTotalPeso(self.pesos, firstSolution) <= self.capacity:
-      # Si la condición se cumple, se devuelve la solución generada.
-      return firstSolution
-  ```
-  
-  ### 3.3 - Representación de la solución ###
+    costo = functools.partial(getTotalValor, valores=valores, capacidad=capacidad, pesos=pesos)
+ ```
+  ### 3.2 - Representación de la solución ###
   
   Definimos la capacidad de la mochila
   
@@ -148,40 +137,6 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
   ```
   en el cuál, se mostrarán con un 1 los objetos seleccionados para introducirse en la mochila, mientras que con 0 los que    se quedarán afuera.
   
-  ### 3.4 - Solución vecino ###
-  
-  Este código genera una solución vecina para el Problema de la Mochila modificando aleatoriamente la solución actual y asegurándose de que la nueva solución cumpla con las restricciones de peso impuestas por la capacidad de la mochila.
-  
-  ```Python
-  def create_neighbor_solution(self, actual_solution: list) -> list:
-    """
-    Crea una solución vecina para el Problema de la Mochila.
-
-    Genera una solución vecina modificando aleatoriamente la solución actual. Se asegura de que la solución vecina generada sea válida en términos de peso respecto a la capacidad de la mochila.
-
-    Parameters
-    ----------
-    actual_solution : list
-        Lista que representa la solución actual, donde cada elemento indica si el elemento correspondiente está incluido en la mochila (1 si está incluido, 0 si no lo está).
-
-    Returns
-    -------
-    list
-        La solución vecina generada.
-    """
-    # Se inicializa un bucle infinito para asegurar que se genere una solución válida.
-    while True:
-        # Se crea una copia de la solución actual para modificarla.
-        neighbor = actual_solution.copy()
-        # Se selecciona aleatoriamente un índice dentro del rango de la longitud de la solución.
-        randomIndex = random.randint(0, (len(actual_solution) - 1))
-        # Se cambia el valor del elemento en el índice seleccionado: si es 1, se convierte en 0; si es 0, se convierte en 1.
-        neighbor[randomIndex] = 0 if neighbor[randomIndex] == 1 else 1
-        # Se verifica si el peso total de la solución vecina es menor o igual a la capacidad de la mochila.
-        if self.getTotalPeso(self.pesos, neighbor) <= self.capacity:
-            # Si la condición se cumple, se devuelve la solución vecina generada.
-            return neighbor
-  ```
   
 ## 4 - Instancias ##
 
