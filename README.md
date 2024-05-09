@@ -108,10 +108,6 @@ Si la capacidad de la mochila es $c=70$ , meteríamos los elementos $A$ y $B$ qu
           return totalValor-totalPeso
       return totalValor
   ```
-  ### Ejemplo de llamada
-  ```Python
-    costo = functools.partial(getTotalValor, valores=valores, capacidad=capacidad, pesos=pesos)
- ```
   ### 3.2 - Representación de la solución ###
   
   Definimos la capacidad de la mochila
@@ -163,6 +159,11 @@ with open("./instancias/v20.txt", "r") as file:
         row = line.strip().split(",")
         valores.append(row)
 valores = np.array(valores).astype("float")
+```
+### Ejemplo de llamada
+```Python
+capacidad = 50
+costo = functools.partial(getTotalValor, valores=valores, capacidad=capacidad, pesos=pesos)
 ```
 
 ## 5 - Referencias ##
